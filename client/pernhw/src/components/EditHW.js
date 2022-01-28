@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const EditHW = ({ hw }) => {
+const EditHw = ({ hw }) => {
   const [description, setDescription] = useState(hw.description);
 
   //edit description function
@@ -10,7 +10,7 @@ const EditHW = ({ hw }) => {
     try {
       const body = { description };
       const response = await fetch(
-        `http://localhost:5000/hw/${hw.hw_id}`,
+        `http://localhost:5000/hws/${hw.hw_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -91,4 +91,4 @@ const EditHW = ({ hw }) => {
   );
 };
 
-export default EditHW;
+export default EditHw;

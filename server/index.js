@@ -10,15 +10,15 @@ app.use(express.json());
 //ROUTES//
 //create hw
 
-app.post("/hw", async (req, res) => {
+app.post("/hws", async (req, res) => {
   try {
     const { description } = req.body;
-    const newHW = await pool.query(
+    const newHw = await pool.query(
       "INSERT INTO hw (description) VALUES($1) RETURNING *",
       [description]
     );
 
-    res.json(newHW.rows[0]);
+    res.json(newHw.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -26,10 +26,10 @@ app.post("/hw", async (req, res) => {
 
 //get all hw
 
-app.get("/hw", async (req, res) => {
+app.get("/hws", async (req, res) => {
   try {
-    const allHW = await pool.query("SELECT * FROM hw");
-    res.json(allHW.rows);
+    const allHw = await pool.query("SELECT * FROM hw");
+    res.json(allHw.rows);
   } catch (err) {
     console.error(err.message);
   }
@@ -37,10 +37,10 @@ app.get("/hw", async (req, res) => {
 
 //get a hw
 
-app.get("/hw/:id", async (req, res) => {
+app.get("/hws/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const HW = await pool.query("SELECT * FROM hw WHERE hw_id = $1", [
+    const hw = await pool.query("SELECT * FROM hw WHERE hw_id = $1", [
       id
     ]);
 
@@ -52,11 +52,11 @@ app.get("/hw/:id", async (req, res) => {
 
 //update a hw
 
-app.put("/hw/:id", async (req, res) => {
+app.put("/hws/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
-    const updateHW = await pool.query(
+    const updateHw = await pool.query(
       "UPDATE hw SET description = $1 WHERE hw_id = $2",
       [description, id]
     );
@@ -69,10 +69,10 @@ app.put("/hw/:id", async (req, res) => {
 
 //delete a hw
 
-app.delete("/hw/:id", async (req, res) => {
+app.delete("/hws/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteHW = await pool.query("DELETE FROM hw WHERE hw_id = $1", [
+    const deleteHw = await pool.query("DELETE FROM hw WHERE hw_id = $1", [
       id
     ]);
     res.json("hw was deleted!");

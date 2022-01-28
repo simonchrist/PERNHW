@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 
-const InputHW = () => {
+const InputHw = () => {
   const [description, setDescription] = useState("");
 
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
       const body = { description };
-      const response = await fetch("http://localhost:5000/hw", {
+      const response = await fetch("http://localhost:5000/hws", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -35,4 +35,4 @@ const InputHW = () => {
   );
 };
 
-export default InputHW;
+export default InputHw;
